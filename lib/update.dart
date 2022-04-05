@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:surveyapp/appWidgets/app_buttons.dart';
 
 import 'base/app_colors.dart';
 
@@ -64,6 +65,10 @@ class _UpdatePageState extends State<UpdatePage> {
             height: MediaQuery.of(context).size.height * 0.03,
           ),
           _buildDatepicker("Select anniversry Date"),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.03,
+          ),
+          Appbuttons().buildButton(appColors.themeColor, "Update".toUpperCase(), context, 0.9)
         ],
       ),
     );

@@ -23,13 +23,15 @@ class _DetailsPageState extends State<DetailsPage> {
     "Colony": "Akhasar",
     "Vote Center Address": "address here"
   };
+  final _contrroller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
+            controller: _contrroller,
             itemCount: detailsList.length,
             itemBuilder: ((context, index) {
               return Padding(

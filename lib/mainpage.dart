@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:surveyapp/base/app_colors.dart';
 import 'package:surveyapp/complint_page.dart';
 import 'package:surveyapp/details.dart';
+import 'package:surveyapp/survey.dart';
 import 'package:surveyapp/update.dart';
 
 class MainPage extends StatefulWidget {
@@ -44,6 +45,8 @@ class _MainPageState extends State<MainPage> {
                     ? const DetailsPage()
                     : selectedindex == 1
                         ? const UpdatePage()
+                        : selectedindex ==2 ?
+                        const Survey()
                         : const ComplaintPage(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
@@ -58,22 +61,21 @@ class _MainPageState extends State<MainPage> {
     return SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.08,
-        child: Center(
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: tabBarItems.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 0.7, top: 0.7),
-                    child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedindex = index;
-                          });
-                        },
-                        child: _buildCotainer(tabBarItems[index], index)),
-                  );
-                })));
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: tabBarItems.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 0.7, top: 0.7),
+                child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedindex = index;
+                      });
+                    },
+                    child: _buildCotainer(tabBarItems[index], index)),
+              );
+            }));
   }
 
   Widget _buildCotainer(String title, int index) {
@@ -83,16 +85,13 @@ class _MainPageState extends State<MainPage> {
       color:
           selectedindex == index ? appColors.whiteColor : appColors.themeColor,
       child: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(right: 2),
-          child: Text(title,
-              style: TextStyle(
-                  color: selectedindex == index
-                      ? appColors.blackColor
-                      : appColors.whiteColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600)),
-        ),
+        child: Text(title,
+            style: TextStyle(
+                color: selectedindex == index
+                    ? appColors.blackColor
+                    : appColors.whiteColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w600)),
       ),
     );
   }
