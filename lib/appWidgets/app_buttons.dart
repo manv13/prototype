@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
+import '../base/app_colors.dart';
 
 class Appbuttons {
   final appColors = AppColors();
-  buildButton(Color color, String buttonText, BuildContext context) {
+  buildButton(Color color, String buttonText, BuildContext context,
+      double widthPerantage) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.8,
+      width: MediaQuery.of(context).size.width * widthPerantage,
       height: MediaQuery.of(context).size.height * 0.06,
       color: color,
       child: Center(

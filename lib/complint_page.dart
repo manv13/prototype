@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surveyapp/base/app_buttons.dart';
+import 'package:surveyapp/appWidgets/app_buttons.dart';
 
 import 'base/app_colors.dart';
 
@@ -40,82 +40,82 @@ class _ComplaintPageState extends State<ComplaintPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-          child: Column(
-            children: [
-              _buildDropDown(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              _buildOtherDetails(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              InkWell(
-                  onTap: _save,
-                  child: Appbuttons()
-                      .buildButton(appColors.blueColor, 'SAVE', context)),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              Appbuttons().buildButton(
-                  appColors.themeColor, 'VIEW  COMPLAINTS', context)
-            ],
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 15,
+        right: 15,
+      ),
+      child: Column(
+        children: [
+          _buildDropDown(),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.03,
           ),
-        ),
+          _buildOtherDetails(),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          InkWell(
+              onTap: _save,
+              child: Appbuttons()
+                  .buildButton(appColors.blueColor, 'SAVE', context, 0.8)),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          Appbuttons().buildButton(
+              appColors.themeColor, 'VIEW  COMPLAINTS', context, 0.8)
+        ],
       ),
     );
   }
 
   Widget _buildDropDown() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Select Complaint:',
-          style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: appColors.lighblackColor),
-        ),
-        const SizedBox(
-          height: 2,
-        ),
-        Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.08,
-            color: appColors.whiteColor,
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                value: comlaintvalue,
-                iconSize: 24,
-                style: TextStyle(color: appColors.blackColor),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    comlaintvalue = newValue!;
-                  });
-                },
-                items: comlaints.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Select Complaint:',
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: appColors.lighblackColor),
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.08,
+              color: appColors.whiteColor,
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: comlaintvalue,
+                  iconSize: 24,
+                  style: TextStyle(color: appColors.blackColor),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      comlaintvalue = newValue!;
+                    });
+                  },
+                  items:
+                      comlaints.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          value,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            )),
-      ],
+                    );
+                  }).toList(),
+                ),
+              )),
+        ],
+      ),
     );
   }
 

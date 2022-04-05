@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:surveyapp/base/app_colors.dart';
 import 'package:surveyapp/complint_page.dart';
 import 'package:surveyapp/details.dart';
+import 'package:surveyapp/update.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -31,7 +32,26 @@ class _MainPageState extends State<MainPage> {
                   fontSize: 18,
                   fontWeight: FontWeight.w600)),
         ),
-        body: selectedindex == 0 ? DetailsPage() : ComplaintPage());
+        body: SingleChildScrollView(
+          child: Expanded(
+            child: Column(
+              children: [
+                _builTabs(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.04,
+                ),
+                selectedindex == 0
+                    ? const DetailsPage()
+                    : selectedindex == 1
+                        ? const UpdatePage()
+                        : const ComplaintPage(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget _builTabs() {

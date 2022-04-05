@@ -8,4 +8,5 @@ class AppColors {
   final blackColor = Colors.black;
   final lighblackColor = Colors.grey.shade800;
   final blueColor = Colors.blue;
+  final lightGreyColor = Colors.grey.shade400;
 }
