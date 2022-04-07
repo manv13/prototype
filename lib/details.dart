@@ -1,3 +1,4 @@
+import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 
 import 'appWidgets/app_buttons.dart';
@@ -26,23 +27,35 @@ class _DetailsPageState extends State<DetailsPage> {
   final _contrroller = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            controller: _contrroller,
-            itemCount: detailsList.length,
-            itemBuilder: ((context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-                child: _buildField(detailsList.keys.toList()[index],
-                    detailsList.values.toList()[index]),
-              );
-            })),
-        Appbuttons()
-            .buildButton(appColors.themeColor, 'Send Voter Slip', context, 0.9)
-      ],
+    return TranslationAnimatedWidget.tween(
+      duration: const Duration(milliseconds: 200),
+      enabled: true,
+      translationDisabled: const Offset(200, 0),
+      translationEnabled: const Offset(0, 0),
+      child: OpacityAnimatedWidget.tween(
+        enabled: true,
+        opacityDisabled: 0,
+        opacityEnabled: 1,
+        child: Column(
+          children: [
+            ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                controller: _contrroller,
+                itemCount: detailsList.length,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                    child: _buildField(detailsList.keys.toList()[index],
+                        detailsList.values.toList()[index]),
+                  );
+                })),
+            Appbuttons().buildButton(
+                appColors.themeColor, 'Send Voter Slip', context, 0.9)
+          ],
+        ),
+      ),
     );
   }
 

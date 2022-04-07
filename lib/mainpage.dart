@@ -27,7 +27,14 @@ class _MainPageState extends State<MainPage> {
             Icons.arrow_back,
             color: appColors.whiteColor,
           ),
-          title: Text("dynamic title",
+          title: Text(
+              selectedindex == 0
+                  ? "Voter Details"
+                  : selectedindex == 1
+                      ? "Voter Update"
+                      : selectedindex == 2
+                          ? "Area Survey"
+                          : "Voter Complaint",
               style: TextStyle(
                   color: appColors.whiteColor,
                   fontSize: 18,
@@ -45,9 +52,9 @@ class _MainPageState extends State<MainPage> {
                     ? const DetailsPage()
                     : selectedindex == 1
                         ? const UpdatePage()
-                        : selectedindex ==2 ?
-                        const Survey()
-                        : const ComplaintPage(),
+                        : selectedindex == 2
+                            ? const Survey()
+                            : const ComplaintPage(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),

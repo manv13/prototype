@@ -1,3 +1,4 @@
+import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -37,39 +38,52 @@ class _UpdatePageState extends State<UpdatePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 15,
-        right: 15,
-      ),
-      child: Column(
-        children: [
-          _buildphonenumber(),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+    return TranslationAnimatedWidget.tween(
+      duration: const Duration(milliseconds: 200),
+      enabled: true,
+      translationDisabled: const Offset(200, 0),
+      translationEnabled: const Offset(0, 0),
+      child: OpacityAnimatedWidget.tween(
+        enabled: true,
+        opacityDisabled: 0,
+        opacityEnabled: 1,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 15,
+            right: 15,
           ),
-          _buildDropDown(castes, seletedcast, 'Select Cast'),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+          child: Column(
+            children: [
+              _buildphonenumber(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              _buildDropDown(castes, seletedcast, 'Select Cast'),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              _buildDropDown(status, seletedStatus, 'Party Status'),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              _buildDropDown(
+                  designation, seleteddesignation, 'Select Designation'),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              _buildDatepicker("Select Birth Date"),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              _buildDatepicker("Select anniversry Date"),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              Appbuttons().buildButton(
+                  appColors.themeColor, "Update".toUpperCase(), context, 0.9)
+            ],
           ),
-          _buildDropDown(status, seletedStatus, 'Party Status'),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          _buildDropDown(designation, seleteddesignation, 'Select Designation'),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          _buildDatepicker("Select Birth Date"),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          _buildDatepicker("Select anniversry Date"),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          Appbuttons().buildButton(appColors.themeColor, "Update".toUpperCase(), context, 0.9)
-        ],
+        ),
       ),
     );
   }

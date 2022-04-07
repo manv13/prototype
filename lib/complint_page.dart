@@ -1,3 +1,4 @@
+import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:surveyapp/appWidgets/app_buttons.dart';
 
@@ -40,31 +41,42 @@ class _ComplaintPageState extends State<ComplaintPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 15,
-        right: 15,
-      ),
-      child: Column(
-        children: [
-          _buildDropDown(),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+    return TranslationAnimatedWidget.tween(
+      duration: const Duration(milliseconds: 200),
+      enabled: true,
+      translationDisabled: const Offset(200, 0),
+      translationEnabled: const Offset(0, 0),
+      child: OpacityAnimatedWidget.tween(
+        enabled: true,
+        opacityDisabled: 0,
+        opacityEnabled: 1,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 15,
+            right: 15,
           ),
-          _buildOtherDetails(),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+          child: Column(
+            children: [
+              _buildDropDown(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              _buildOtherDetails(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              InkWell(
+                  onTap: _save,
+                  child: Appbuttons()
+                      .buildButton(appColors.blueColor, 'SAVE', context, 0.8)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              Appbuttons().buildButton(
+                  appColors.themeColor, 'VIEW  COMPLAINTS', context, 0.8)
+            ],
           ),
-          InkWell(
-              onTap: _save,
-              child: Appbuttons()
-                  .buildButton(appColors.blueColor, 'SAVE', context, 0.8)),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
-          ),
-          Appbuttons().buildButton(
-              appColors.themeColor, 'VIEW  COMPLAINTS', context, 0.8)
-        ],
+        ),
       ),
     );
   }
